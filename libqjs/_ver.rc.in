@@ -1,0 +1,31 @@
+#include <windows.h>
+
+1 VERSIONINFO
+FILEVERSION  1  
+PRODUCTVERSION 1
+FILEFLAGSMASK 0x3fL
+FILEFLAGS 0x0L
+FILEOS 0x40004L  
+FILETYPE 0x1L 
+FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"  
+    BEGIN  
+        BLOCK "040904E4"  
+        BEGIN
+           VALUE "CompanyName", "quickjs"  
+           VALUE "FileDescription", "quickjs"  
+           VALUE "FileVersion", "@QJS_SOURCE_VERSION@"  
+           VALUE "InternalName", "quickjs"  
+           VALUE "OriginalFilename", "quickjs.dll"  
+           VALUE "ProductName", "quickjs-@QJS_SOURCE_VERSION@"
+           VALUE "ProductVersion", "quickjs-@QJS_SOURCE_VERSION@"            
+        END
+    END
+      BLOCK "VarFileInfo"
+    BEGIN
+      VALUE "Translation", 0x0409, 1252
+    END      
+END
+
+
