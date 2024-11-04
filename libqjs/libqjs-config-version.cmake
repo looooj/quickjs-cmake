@@ -2,9 +2,13 @@ message("===PACKAGE_FIND_VERSION ${PACKAGE_FIND_VERSION}")
 set(PACKAGE_VERSION "1")
 set(PACKAGE_VERSION_COMPATIBLE TRUE)
 
-set(libqjs_source_version 2023-12-09 PARENT_SCOPE)
+set(libqjs_source_version 2024-01-13 PARENT_SCOPE)
 
 #message("==libqjs_source_version ${libqjs_source_version}")
+
+if("${PACKAGE_FIND_VERSION}" EQUAL "1.4")
+  set(libqjs_source_version "2024-01-13" PARENT_SCOPE)
+endif()
 
 if("${PACKAGE_FIND_VERSION}" EQUAL "1.3")
   set(libqjs_source_version "2023-12-09" PARENT_SCOPE)
