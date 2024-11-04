@@ -57,7 +57,7 @@ void qjs_run_file(JSContext* ctx, const std::string& filename) {
     }
 
     js_free(ctx, text);
-
+    JS_FreeValue(ctx,ret);
 }
 
 
@@ -87,12 +87,15 @@ void test_01() {
         qjs_dump_error(ctx, result);
         printf("exception\n %s\n", result.c_str());
     }
+    JS_FreeValue(ctx,val);
 
     qjs_run_file(ctx, "hello.js");
     qjs_run_file(ctx, "hello2.js");
 
 
     auto v = JS_NewObject(ctx);
+    JS_FreeValue(ctx,v);
+    js_std_free_handlers(rt);
 
     JS_FreeContext(ctx);
     JS_FreeRuntime(rt);
