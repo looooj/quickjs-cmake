@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake"
                       ${CMAKE_SOURCE_DIR})
 
+
+message("===CMAKE_FIND_ROOT_PATH   ${CMAKE_FIND_ROOT_PATH}")
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH};${CMAKE_FIND_ROOT_PATH})
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -70,15 +74,20 @@ add_custom_target(
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
   VERBATIM)
 
-set(lib_dst_dir ${CMAKE_SOURCE_DIR}/lib/${QJS_SOURCE_VERSION})
+
+set(lib_dst_base_dir ${CMAKE_SOURCE_DIR}/dist/${QJS_SOURCE_VERSION})
+  
+set(lib_dst_lib_dir ${lib_dst_base_dir}/lib)
+
 set(lib_src_dir ${CMAKE_CURRENT_BINARY_DIR})
 
 add_custom_target(
   qjs_copy_lib
   COMMAND ${CMAKE_COMMAND} -E copy ${lib_src_dir}/${qjs_lib_name}
-          ${lib_dst_dir}/${qjs_lib_name}
+          ${lib_dst_lib_dir}/${qjs_lib_name}
   COMMAND ${CMAKE_COMMAND} -E copy ${lib_src_dir}/${qjs_dll_name}
-          ${lib_dst_dir}/${qjs_dll_name})
+          ${lib_dst_lib_dir}/${qjs_dll_name}
+    )
 
 add_dependencies(qjs_gen_def qjs)
 

@@ -36,16 +36,16 @@ set_target_properties(qjs_dll PROPERTIES
 
 set_property(TARGET qjs_dll APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(qjs_dll PROPERTIES
-  IMPORTED_IMPLIB_DEBUG "${QJS_DIR}/libqjs/lib/${libqjs_source_version}/${qjs_debug_lib_name}"
-  IMPORTED_LOCATION_DEBUG "${QJS_DIR}/libqjs/lib/${libqjs_source_version}/${qjs_debug_dll_name}"
+  IMPORTED_IMPLIB_DEBUG "${QJS_DIR}/libqjs/dist/${libqjs_source_version}/lib/${qjs_debug_lib_name}"
+  IMPORTED_LOCATION_DEBUG "${QJS_DIR}/libqjs/dist/${libqjs_source_version}/lib/${qjs_debug_dll_name}"
 )
 
 #message("==implib " "${QJS_DIR}/libqjs/lib/${qjs_lib_name}" )
 
 set_property(TARGET qjs_dll APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(qjs_dll PROPERTIES
-  IMPORTED_IMPLIB_RELEASE "${QJS_DIR}/libqjs/lib/${libqjs_source_version}/${qjs_lib_name}"
-  IMPORTED_LOCATION_RELEASE "${QJS_DIR}/libqjs/lib/${libqjs_source_version}/${qjs_dll_name}"
+  IMPORTED_IMPLIB_RELEASE "${QJS_DIR}/libqjs/dist/${libqjs_source_version}/lib/${qjs_lib_name}"
+  IMPORTED_LOCATION_RELEASE "${QJS_DIR}/libqjs/dist/${libqjs_source_version}/lib/${qjs_dll_name}"
 )
 
 
