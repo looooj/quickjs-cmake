@@ -17,7 +17,8 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
 else()
   set(CMAKE_DEBUG_POSTFIX)
 endif()
-message("==CMAKE_BUILD_TYPE  ${CMAKE_BUILD_TYPE}  ${CMAKE_DEBUG_POSTFIX} ")
+
+#message("==CMAKE_BUILD_TYPE  ${CMAKE_BUILD_TYPE}  ${CMAKE_DEBUG_POSTFIX} ")
 
 set(QJS_DIR "${CMAKE_SOURCE_DIR}/../quickjs-${QJS_SOURCE_VERSION}")
 set(QJS_SRC
@@ -79,7 +80,10 @@ set(lib_dst_base_dir ${CMAKE_SOURCE_DIR}/dist/${QJS_SOURCE_VERSION})
   
 set(lib_dst_lib_dir ${lib_dst_base_dir}/lib)
 
+set(lib_dst_inc_dir ${lib_dst_base_dir}/include)
+
 set(lib_src_dir ${CMAKE_CURRENT_BINARY_DIR})
+
 
 add_custom_target(
   qjs_copy_lib
@@ -87,7 +91,7 @@ add_custom_target(
           ${lib_dst_lib_dir}/${qjs_lib_name}
   COMMAND ${CMAKE_COMMAND} -E copy ${lib_src_dir}/${qjs_dll_name}
           ${lib_dst_lib_dir}/${qjs_dll_name}
-    )
+)
 
 add_dependencies(qjs_gen_def qjs)
 

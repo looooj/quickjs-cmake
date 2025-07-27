@@ -1,0 +1,11 @@
+
+set(QJS_LIB_PATH d:/projects/quickjs-cmake/libqjs)
+
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH};${QJS_LIB_PATH})
+
+find_package(libqjs REQUIRED)
+
+#...
+copy_qjs_dll(main)
+
+target_link_libraries(main PRIVATE qjs_dll)
