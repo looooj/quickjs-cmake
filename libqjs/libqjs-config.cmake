@@ -17,7 +17,7 @@ get_filename_component(QJS_DIR ${QJS_DIR} ABSOLUTE)
 #set(qjs_inc ${QJS_DIR}/quickjs-${libqjs_source_version})
 
 
-#message("=3= QJS_DIR ${QJS_DIR}")
+message("libqjs_source_version=${libqjs_source_version}")
 
 set(QJS_LIB_DIR ${QJS_DIR}/libqjs/dist/${libqjs_source_version}/lib)
 set(qjs_inc ${QJS_DIR}/libqjs/dist/${libqjs_source_version}/include)
