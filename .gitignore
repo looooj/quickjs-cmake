@@ -237,3 +237,5 @@ build-pkg
 *.dll
 *.a
 *.lib
+tmp/*
+tmp
