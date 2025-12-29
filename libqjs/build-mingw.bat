@@ -8,6 +8,7 @@ set xarch=%1
 set xsource_version=%2
 set xbuild_type=%3%
 set xgen=%4%
+set xerror="0"
 
 if "t%xsource_version%" == "t" set xsource_version=2023-12-09
 if "t%xbuild_type%" == "t" set xbuild_type=Release
@@ -32,11 +33,18 @@ cd %cdir%
 md cmake-tmp
 cd cmake-tmp
 cmake --build . --target qjs_copy_lib 
+if %ERRORLEVEL% NEQ 0 set xerror="1"
 cd %cdir%
+
+if %xerror% == "1" goto xend
+
 md dist
 md dist\%xsource_version%
 md dist\%xsource_version%\include
+md dist\include
+
 copy ..\quickjs-%xsource_version%\*.h dist\%xsource_version%\include
+copy ..\quickjs-%xsource_version%\*.h dist\include
 
 
 :xend

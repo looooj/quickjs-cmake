@@ -21,9 +21,27 @@ endif()
 #message("==CMAKE_BUILD_TYPE  ${CMAKE_BUILD_TYPE}  ${CMAKE_DEBUG_POSTFIX} ")
 
 set(QJS_DIR "${CMAKE_SOURCE_DIR}/../quickjs-${QJS_SOURCE_VERSION}")
+
+get_filename_component(QJS_DIR ${QJS_DIR} ABSOLUTE)
+
+message("===QJS_DIR ${QJS_DIR}")
+
 set(QJS_SRC
     ${QJS_DIR}/quickjs.c ${QJS_DIR}/libregexp.c ${QJS_DIR}/cutils.c
-    ${QJS_DIR}/quickjs-libc.c ${QJS_DIR}/libunicode.c ${QJS_DIR}/libbf.c)
+    ${QJS_DIR}/quickjs-libc.c ${QJS_DIR}/libunicode.c )
+
+set(QJS_SRC2 "${QJS_DIR}/libbf.c" )      
+
+
+if(${QJS_SOURCE_VERSION} STREQUAL "2025-09-13")    
+  set(QJS_SRC2 ${QJS_DIR}/dtoa.c) 
+endif()
+
+if(${QJS_SOURCE_VERSION} STREQUAL "2025-04-26")    
+  set(QJS_SRC2 ${QJS_DIR}/dtoa.c) 
+endif()
+
+
 
 project(qjs)
 
@@ -39,7 +57,11 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 configure_file(_ver.rc.in ver.rc)
 
-add_library(qjs SHARED ${QJS_SRC} ver.rc)
+
+add_library(qjs SHARED 
+ ${QJS_SRC}
+ ${QJS_SRC2} 
+ ver.rc)
 
 target_compile_options(
   qjs PRIVATE -DCONFIG_BIGNUM -DCONFIG_VERSION="${QJS_SOURCE_VERSION}"
@@ -63,7 +85,7 @@ set(_genlib "${MINGW_BIN_DIR}/dlltool.exe")
 
 add_custom_target(
   qjs_gen_def
-  COMMAND ${_gendef} ARGS ${qjs_dll_name}
+  COMMAND ${_gendef} ${qjs_dll_name}
   DEPENDS qjs
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
   VERBATIM)
