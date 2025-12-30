@@ -1060,7 +1060,8 @@ static inline JSValue JS_NewCFunctionMagic(JSContext *ctx, JSCFunctionMagic *fun
                                            int length, JSCFunctionEnum cproto, int magic)
 {
     /* Used to squelch a -Wcast-function-type warning. */
-    JSCFunctionType ft = { .generic_magic = func };
+    JSCFunctionType ft = {};
+    ft.generic_magic = func;
     return JS_NewCFunction2(ctx, ft.generic, name, length, cproto, magic);
 }
 void JS_SetConstructor(JSContext *ctx, JSValueConst func_obj,
