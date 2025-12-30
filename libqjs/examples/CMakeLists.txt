@@ -15,7 +15,7 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 project(quickjs-examples)
 
 #find_package(libqjs 1.5 REQUIRED)
-find_package(libqjs REQUIRED)
+find_package(libqjs 1.6 REQUIRED)
 
 message("===libqjs_source_version ${libqjs_source_version}")
 message("===CMAKE_BUILD_TYPE  ${CMAKE_BUILD_TYPE}  ${CMAKE_DEBUG_POSTFIX} ")

@@ -136,8 +136,14 @@ void test_01() {
     JS_FreeRuntime(rt);
 }
 
+void test_02() {
+
+    JSValue v = JS_UNDEFINED;
+}
+
 int main(int argc, char* argv[]) {
 
     test_01();
+    test_02();
     return 0;
 }
